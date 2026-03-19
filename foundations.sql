@@ -57,3 +57,36 @@ author_id=viewer_id order by author_id ASC
 
 
 
+-- ** DAY 3**
+
+-- PROBLEM: Calculate Special Bonus
+-- DIFFICULTY: Easy
+
+select employee_id, IF(employee_id%2!=0 and name not like 'M%', salary, 0) as bonus
+from Employees order by employee_id ASC
+
+
+
+-- PROBLEM: Fix Names In A Table
+-- DIFFICULTY: Easy
+
+select user_id, 
+CONCAT(
+        UPPER(LEFT(name, 1)),
+        LOWER(SUBSTRING(name, 2))
+      ) as name
+from Users order by user_id ASC
+
+
+
+-- PROBLEM: Replace Employee ID with Unique Identifier
+-- DIFFICULTY: Easy
+
+select eu.unique_id,e.name from Employees e
+LEFT JOIN EmployeeUNI eu on e.id=eu.id
+
+
+
+
+
+
