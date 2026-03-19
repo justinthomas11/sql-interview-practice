@@ -89,4 +89,53 @@ LEFT JOIN EmployeeUNI eu on e.id=eu.id
 
 
 
+-- ** DAY 4**
+
+-- PROBLEM: Not boring movies
+-- DIFFICULTY: Easy
+
+select id, movie, description, rating from Cinema where id%2=1 and description not like "boring" 
+order by rating DESC
+
+
+
+-- PROBLEM: Product Sales Analysis I
+-- DIFFICULTY: Easy
+
+select s.sale_id, p.produce_name, s.year, s.price from product p inner join sales 
+on p.product_id=s.product_id 
+
+
+
+-- PROBLEM: Rearrange Products Table
+-- DIFFICULTY: EASY
+
+SELECT product_id, 'store1' AS store, store1 AS price
+FROM Products
+WHERE store1 IS NOT NULL
+
+UNION
+
+SELECT product_id, 'store2' AS store, store2 AS price
+FROM Products
+WHERE store2 IS NOT NULL
+
+UNION
+
+SELECT product_id, 'store3' AS store, store3 AS price
+FROM Products
+WHERE store3 IS NOT NULL;
+
+
+
+-- PROBLEM: Average Selling Price
+-- DIFFICULTY: Easy
+
+
+
+
+
+
+
+
 
