@@ -131,6 +131,32 @@ WHERE store3 IS NOT NULL;
 -- PROBLEM: Average Selling Price
 -- DIFFICULTY: Easy
 
+select p.product_id, IFNULL(ROUND(SUM(p.price*u.units)/SUM(u.units),2),0) as "average_price"
+from Prices p left join UnitsSold u 
+on p.product_id=u.product_id 
+AND u.purchase_date BETWEEN p.start_date and p.end_date
+group by product_id
+
+
+-- PROBLEM: Project Employees I
+--- DIFFICULTY: Easy
+
+select p.project_id, ROUND(AVG(experience_years),2) as "average_years" 
+from project p left join employee e on p.employee_id=e.employee_id 
+group by p.project_id
+
+
+--- PROBLEM: User Activity For The Past 30 days I
+--- DIFFICULTY: Easy
+
+select activity_date as "day" , COUNT(DISTINCT(user_id)) as "active_users"
+from Activity
+where activity_date> DATE_SUB('2019-07-27', INTERVAL 30 DAY) 
+AND activity_date<='2019-07-27'
+GROUP BY activity_date
+
+
+
 
 
 
