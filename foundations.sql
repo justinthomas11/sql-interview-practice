@@ -128,6 +128,11 @@ WHERE store3 IS NOT NULL;
 
 
 
+
+
+-- ** DAY 5**
+
+
 -- PROBLEM: Average Selling Price
 -- DIFFICULTY: Easy
 
@@ -154,6 +159,41 @@ from Activity
 where activity_date> DATE_SUB('2019-07-27', INTERVAL 30 DAY) 
 AND activity_date<='2019-07-27'
 GROUP BY activity_date
+
+
+
+
+
+-- ** DAY 6**
+
+-- PROBLEM: Queries Quality and Percentage
+-- DIFFICULTY: Easy
+
+select query_name, ROUND(AVG(rating/position),2) as "quality"
+ROUND(SUM(IF(rating<3,1,0))/COUNT(*) * 100, 2) as "poor_query_percentage"
+FROM Queries
+GROUP BY query_name
+
+
+
+-- PROBLEM: Bank Account Summary II
+-- DIFFICULTY: Easy
+
+select u.name, SUM(t.amount) as "balance"
+from Users u INNER JOIN Transactions t
+on u.account=t.account
+GROUP BY u.account
+having balance>10000
+
+
+
+-- PROBLEM: Customer Placing The Largest Number Of Orders
+-- DIFFICULTY: Easy
+
+select customer_number from Orders
+GROUP BY customer_number
+ORDER BY COUNT(*) DESC
+LIMIT 1
 
 
 
