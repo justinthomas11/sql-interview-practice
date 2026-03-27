@@ -200,6 +200,43 @@ LIMIT 1
 
 
 
+-- *DAY 8* --
+
+-- PROBLEM: Combine Two Tables
+-- DIFFICULTY: Easy
+
+select p.firstName, p.lastName, a.city, a.state from
+Person p LEFT JOIN Address a on p.personID=a.personID
+
+
+
+-- PROBLEM: Employees Earning More Than Their Managers
+-- DIFFICULTY: Easy
+
+select e.name as "Employee" from Employee e 
+join Employee m
+on e.managerId=m.id 
+where e.salary>m.salary
+
+
+
+-- PROBLEM: Duplicate Emails
+-- DIFFICULTY: Easy
+
+select email from Person
+group by email
+having count(email)>1
+
+
+
+
+
+
+
+
+
+
+
 
 
 
