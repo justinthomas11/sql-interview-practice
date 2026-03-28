@@ -347,6 +347,43 @@ order by year_rank asc
 
 
 
+-- ** DAY 9**
+
+-- PROBLEM: Rising Temperature
+-- DIFFICULTY: Easy
+
+select a.id from Weather a JOIN Weather b 
+ON a.recordDate=DATE_ADD(b.recordDate, INTERVAL 1 DAY)
+where a.temperature>b.temperature
+
+
+
+-- PROBLEM: Game Play Analysis I
+-- DIFFICULTY: Easy
+
+select player_id, MIN(event_date) as "first_login" from Activity
+group by player_id
+
+
+
+
+
+-- ** DAY 10**
+
+-- PROBLEM: Managers with at least 5 direct reports
+-- DIFFICULTY: Easy
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
