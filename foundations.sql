@@ -371,10 +371,31 @@ group by player_id
 -- ** DAY 10**
 
 -- PROBLEM: Managers with at least 5 direct reports
+-- DIFFICULTY: Medium
+
+select a.name from Employee a join Employee b
+on a.id=b.managerId
+GROUP BY a.id, a.name
+having count(b.managerId)>=5
+
+
+
+-- PROBLEM: Customer Who Visited But Did Not Make Any Transactions
 -- DIFFICULTY: Easy
 
+select v.customer_id, count(*) as "count_no_trans" 
+from Visits v left join Transactions t 
+on v.visit_id=t.visit_id
+where t.visit_id is null
+group by v.customer_id
 
 
+
+-- PROBLEM: Sales Person
+-- DIFFICULTY: Easy
+
+select name from SalesPerson where sales_id not in 
+(select o.sales_id from Orders o LEFT JOIN Company c on o.com_id=c.com_id WHERE c.name='RED')
 
 
 
