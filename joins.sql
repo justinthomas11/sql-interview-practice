@@ -80,3 +80,42 @@ group by v.customer_id
 select name from SalesPerson where sales_id not in 
 (select o.sales_id from Orders o LEFT JOIN Company c on o.com_id=c.com_id WHERE c.name='RED')
 
+
+
+
+
+-- ** DAY 11**
+
+-- PROBLEM: Department Highest Salary
+-- DIFFICULTY: Medium
+
+select d.name as "Department", e.name as "Employee", e.salary as "Salary"
+from Employee e inner join Department d 
+on e.departmentId=d.id
+WHERE (e.departmentId, e.salary) IN (
+    SELECT departmentId, MAX(salary)
+    FROM Employee
+    GROUP BY departmentId
+);
+
+
+
+-- PROBLEM: Exchange Seats
+-- DIFFICULTY: Medium
+
+select 
+CASE
+    WHEN id % 2 = 1 AND id != (SELECT MAX(id) FROM Seat) THEN id + 1
+    WHEN id % 2 = 0 THEN id - 1
+    ELSE id
+END AS id, student
+from Seat
+order by id asc
+
+
+
+-- PROBLEM: Product Sales Analysis I
+-- Difficulty: Easy
+
+select p.product_name,s.year,s.price from product p inner join sales s on p.product_id=s.product_id
+
