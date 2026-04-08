@@ -115,7 +115,36 @@ order by id asc
 
 
 -- PROBLEM: Product Sales Analysis I
--- Difficulty: Easy
+-- DIFFICULTY: Easy
 
 select p.product_name,s.year,s.price from product p inner join sales s on p.product_id=s.product_id
+
+
+
+
+
+-- ** DAY 12**
+
+-- PROBLEM: Second Highest Salary
+-- DIFFICULTY: Medium
+
+select max(salary) as "SecondHighestSalary"
+from employee
+where  salary<(select max(salary) from employee)
+
+-- PROBLEM: Rank Score
+-- DIFFICULTY: Medium
+
+select score, dense_rank() over (order by score desc) as "rank" from Scores
+
+-- PROBLEM: Consecutive Numbers
+-- DIFFICULTY: Medium
+
+select distinct l1.name as "ConsecutiveNums"
+from Logs l1
+join Logs l2 on l2.id=l1.id+1
+join Logs l3 on l3.id=l1.id+2
+where l1.nums=l2.nums and l1.nums=l3.nums
+
+
 
