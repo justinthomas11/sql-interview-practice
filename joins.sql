@@ -148,3 +148,52 @@ where l1.nums=l2.nums and l1.nums=l3.nums
 
 
 
+
+
+-- ** DAY 13**
+
+-- PROBLEM: Tree Node
+-- DIFFICULTY: Medium
+
+select id,
+CASE
+    WHEN p_id is null THEN 'Root'
+    WHEN id in (select p_id from Tree where p_id is not null) THEN 'Inner'
+    ELSE 'Leaf'
+END AS 'type'
+from Tree   
+
+-- PROBLEM: Biggest Single Number
+-- DIFFICULTY: Easy
+
+select max(num) as num from (
+    SELECT num
+    FROM MyNumbers
+    GROUP BY num
+    HAVING COUNT(*) = 1
+)
+as temp
+
+-- PROBLEM: Actors and Directors Who Cooperated At Least Three Times
+-- DIFFICULTY: Easy
+
+select actor_id, director_id, from ActorDirector
+group by actor_id,director_id 
+having count(*)>=3
+
+
+-- PROBLEM: Market Analysis I
+-- DIFFICULTY: Medium 
+-- Rule: In SQL, every column in SELECT must be inside an aggregation function or Group BY
+
+select u.user_id as 'buyer_id', u.join_date, count(o.order_id) as 'orders_in_2019'
+from Users u left join Orders o
+on u.user_id=o.buyer_id
+and year(o.order_date)=2019
+group by u.user_id, u.join_date
+
+
+
+
+
+
