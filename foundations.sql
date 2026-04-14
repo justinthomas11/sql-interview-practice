@@ -200,7 +200,15 @@ LIMIT 1
 
 
 
+-----------------STRATASCRATCH---------------------
 
+
+-- PROBLEM: Calculate Samantha's and Lisa's Total Sales Revenue
+-- DIFFICULTY: Easy
+
+select sum(sales_revenue) as total_revenue
+from sales_performance
+where salesperson='Samantha' or salesperson='Lisa'
 
 
 

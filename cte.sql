@@ -31,3 +31,5 @@ with secondhighest as (
     from Employee
 )
 select MAX(salary) as "SecondHighestSalary" from secondhighest where rnk=2
+
+
