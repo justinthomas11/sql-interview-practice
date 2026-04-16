@@ -205,10 +205,28 @@ LIMIT 1
 
 -- PROBLEM: Calculate Samantha's and Lisa's Total Sales Revenue
 -- DIFFICULTY: Easy
+-- COMPANIES: Amazon, SalesForce, Groupon
 
 select sum(sales_revenue) as total_revenue
 from sales_performance
 where salesperson='Samantha' or salesperson='Lisa'
+
+
+
+
+-- PROBLEM: Wine varieties tasted by "Roger Voss"
+-- DIFFICULTY: Easy
+-- COMPANIES: Wine Magazine
+
+select distinct variety from winemag_p2 where taster_name='Roger Voss' and region_1 is not null
+
+
+
+-- PROBLEM: Hour of highest gas expense
+-- DIFFICULTY: Easy
+-- COMPANIES: Lyft
+
+select hour from lyft_rides where gasoline_cost in (select max(gasoline_cost) from lyft_rides)
 
 
 
