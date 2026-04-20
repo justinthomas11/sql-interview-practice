@@ -24,12 +24,13 @@ select * from employees where salary>(select avg_sal from avg_salary)
 
 
 
--- EXAMPLE
--- Find 2nd Highest Salary
-with secondhighest as (
-    select salary, dense_rank() over (order by salary desc) as rnk
-    from Employee
-)
-select MAX(salary) as "SecondHighestSalary" from secondhighest where rnk=2
+-- PROBLEM: Second Highest Salary
+-- DIFFICULTY: Medium
+-- COMPANIES: Amazon, Dropbox 
+
+with cte as
+(select salary, dense_rank() over (order by salary desc) as "salary_rank" from employee)
+
+select salary from cte where salary_rank=2
 
 

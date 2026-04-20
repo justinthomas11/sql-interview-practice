@@ -231,6 +231,45 @@ select hour from lyft_rides where gasoline_cost in (select max(gasoline_cost) fr
 
 
 
+-- PROBLEM: Unique Users Per Client Per Month
+-- DIFFICULTY: Easy
+-- COMPANIES: Microsoft, Apple, Dell
+
+select client_id, extract(month from time_id) as "month", count(distinct user_id) as "users_num"
+from fact_events group by client_id, month;
+
+
+
+
+-- PROBLEM: High Earners in Support Departments
+-- DIFFICULTY: Easy
+-- COMPANIES: Uber, Spotify, Amazon
+
+select first_name, last_name, department, salary from techcorp_workforce where salary>80000 
+and department in ('HR', 'Admin')
+
+
+
+
+-- PROBLEM: Top Ranked Songs
+-- DIFFICULTY: Easy
+-- COMPANIES: Spotify
+
+select trackname, count(*) as "times_top1"
+from spotify_worldwide_daily_song_ranking
+where position=1
+group by trackname
+order by times_top1 desc
+
+
+
+
+
+
+
+
+
+
 
 
 
