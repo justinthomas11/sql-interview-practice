@@ -234,4 +234,21 @@ from deloitte_numbers d1 cross join deloitte_numbers d2
 
 
 
+-- PROBLEM: Salary Less Than Twice The Average
+-- DIFFICULTY: Medium
+-- COMPANIES: Amazon, Walmart, Best Buy
+
+select m.manager_empl_id as "manager_empl_id", 
+mgr.salary as "manager_salary",
+avg(emp.salary) as "avg_employee_salary"
+from map_employee_hierarchy m inner join dim_employee emp
+on m.empl_id=emp.empl_id
+inner join dim_employee mgr
+on m.manager_empl_id=mgr.empl_id
+group by m.manager_empl_id, mgr.salary
+having mgr.salary<2*avg(emp.salary)
+
+
+
+
 
