@@ -264,6 +264,25 @@ order by times_top1 desc
 
 
 
+-- PROBLEM: Share Of Active Users
+-- DIFFICULTY: Medium
+-- COMPANIES: Meta
+
+select sum(CASE
+                WHEN country='USA'
+                    AND status='open' then 1
+                ELSE 0
+            END) * 100.0/COUNT(*) as us_active_share
+from fb_active_users
+
+
+
+
+
+
+
+
+
 
 
 

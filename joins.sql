@@ -197,3 +197,41 @@ group by u.user_id, u.join_date
 
 
 
+
+-----------------------STRATASCRATCH--------------------------------------------
+
+-- PROBLEM: Total Cost Of Orders
+-- DIFFICULTY: Easy
+
+select c.id,c.first_name,sum(total_order_cost) 
+from customers c inner join orders o
+on c.id=o.cust_id
+group by c.id, c.first_name;
+
+
+
+-- PROBLEM: Find All Posts Which Were Reacted To With A Heart
+
+select distinct r.post_id, r.poster, p.post_text, p.post_keywords,p.post_date
+from facebook_reactions r inner join facebook_posts p
+on r.post_id=p.post_id
+where r.reaction='heart'
+
+
+
+
+-- PROBLEM: Maximum of Two Numbers
+-- DIFFICULTY: Medium
+-- COMPANIES: Deloitte
+
+select d1.number as "number1", d2.number as "number2", 
+CASE
+    WHEN d1.number>d2.number THEN d1.number
+    ELSE d2.number
+END AS "max_number"
+from deloitte_numbers d1 cross join deloitte_numbers d2
+
+
+
+
+
