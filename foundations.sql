@@ -301,6 +301,36 @@ group by survived
 
 
 
+-- PROBLEM: Department Workforce Analysis
+-- DIFFICULTY: Medium
+-- COMPANIES: Google, Microsoft, Oracle
+
+select department, count(*) as headcount, sum(salary) as total_payroll,
+avg(salary) as avg_salary
+from techcorp_workforce
+where joining_date>'2020-12-31'
+group by department
+having count(*)>=5
+
+
+
+
+-- PROBLEM: Top 10 Songs 2010
+-- DIFFICULTY: Medium
+-- COMPANIES: Spotify
+
+select year_rank, group_name, song_name from billboard_top_100_year_end
+where year='2010' 
+and year_rank between 1 and 10
+group by year_rank, group_name, song_name
+order by year_rank asc
+
+
+
+
+
+
+
 
 
 
