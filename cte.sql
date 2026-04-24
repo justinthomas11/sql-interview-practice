@@ -54,8 +54,6 @@ select distinct customer_id, customer_name from cte order by customer_id
 -- DIFFICULTY: Medium
 -- COMPANIES: Meta
 
-select * from facebook_complaints;
-
 with cte as(
     select type,
             CASE
@@ -67,6 +65,29 @@ with cte as(
 select type, round(avg(processed_num),2) as processed_rate
 from cte
 group by type
+
+
+
+
+-- PROBLEM: Income by title and gender
+-- DIFFICULTY: Medium
+-- COMPANIES: City of San Francisco
+
+select * from sf_employee;
+
+with bonus_totals as(
+select worker_ref_id, sum(bonus) as total_bonus
+from sf_bonus
+group by worker_ref_id)
+,
+compensation as(
+select e.employee_title, e.sex, e.salary + b.total_bonus as total_comp
+from sf_employee e inner join bonus_totals b
+on e.id=b.worker_ref_id)
+
+select employee_title, sex, avg(total_comp) as avg_compensation from compensation
+group by employee_title, sex;
+
 
 
 
