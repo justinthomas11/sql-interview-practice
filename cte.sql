@@ -73,8 +73,6 @@ group by type
 -- DIFFICULTY: Medium
 -- COMPANIES: City of San Francisco
 
-select * from sf_employee;
-
 with bonus_totals as(
 select worker_ref_id, sum(bonus) as total_bonus
 from sf_bonus
@@ -88,6 +86,35 @@ on e.id=b.worker_ref_id)
 select employee_title, sex, avg(total_comp) as avg_compensation from compensation
 group by employee_title, sex;
 
+
+
+
+-- PROBLEM: Employee and manager salaries
+-- DIFFICULTY: Medium
+-- COMPANY: Walmart
+
+with cte_managers as 
+(select id, salary from employee)
+
+select e.first_name as first_name, e.salary as salary
+from employee e
+join cte_managers m on e.manager_id=m.id
+where e.salary>m.salary
+
+
+
+
+-- PROBLEM: Highest target under manager
+-- DIFFICULTY: Medium
+-- COMPANY: SalesForce
+
+with cte as(
+select max(target) as max_target from salesforce_employees where manager_id=13
+)
+select s.first_name, s.target
+from salesforce_employees s
+join cte on s.target=cte.max_target
+where s.manager_id=13
 
 
 
