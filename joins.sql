@@ -251,4 +251,42 @@ having mgr.salary<2*avg(emp.salary)
 
 
 
+-- PROBLEM: Matching similar host and guests
+-- DIFFICULTY: Medium
+-- COMPANIES: Airbnb
+
+select distinct h.host_id, g.guest_id from airbnb_hosts h
+inner join airbnb_guests g
+on h.gender=g.gender and h.nationality=g.nationality
+order by host_id asc
+
+
+
+
+-- PROBLEM: Find the percentage of shipable orders
+-- DIFFICULTY: Medium 
+-- COMPANIES: Google
+
+select count(c.address)*100.00/count(*) as percent_shipable
+from orders o left join customers c
+on o.cust_id=c.id
+
+
+
+
+-- PROBLEM: Employees with the same salary
+-- DIFFICULTY: Medium
+-- COMPANIES: Amazon
+
+select a.worker_id, a.first_name,a.salary 
+from worker a inner join worker b 
+on a.salary=b.salary and a.worker_id!=b.worker_id
+order by a.salary desc
+
+
+
+
+
+
+
 
