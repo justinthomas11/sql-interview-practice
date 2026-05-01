@@ -1,6 +1,6 @@
 # SQL Interview Practice
 
-30-day structured SQL practice plan covering 
+Structured SQL practice plan covering 
 foundations, joins, window functions and 
 business analytics queries.
 
