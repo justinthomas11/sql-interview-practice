@@ -119,6 +119,36 @@ where s.manager_id=13
 
 
 
+-- PROBLEM: Acceptance Rate By Date
+-- DIFFICULTY: Medium
+-- COMPANY: Meta
+
+with sent_requests as
+(
+select user_id_sender, user_id_receiver, date as sent_date 
+from fb_friend_requests 
+where action='sent'
+),
+accepted_requests as
+(
+select user_id_sender, user_id_receiver 
+from fb_friend_requests 
+where action='accepted'
+)
+
+SELECT 
+    s.sent_date AS date,
+    COUNT(a.user_id_sender) * 1.0 / COUNT(*) AS acceptance_rate
+FROM sent_requests s
+LEFT JOIN accepted_requests a
+    ON s.user_id_sender = a.user_id_sender
+    AND s.user_id_receiver = a.user_id_receiver
+GROUP BY s.sent_date
+HAVING COUNT(a.user_id_sender) > 0
+ORDER BY s.sent_date;
+
+
+
 
 
 
