@@ -37,3 +37,20 @@ where rnk=1
 order by id asc
 
 
+
+
+-- PROBLEM: Ranking Most Active Guests
+-- DIFFICULTY: Medium
+-- COMPANY: Airbnb
+
+select dense_rank() over(oreder by sum(n_messages) desc) as ranking, 
+id_guest, sum(n_messages) as sum_n_messages
+from airbnb_contacts
+group by id_guest
+
+
+
+
+
+
+
